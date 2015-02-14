@@ -1,0 +1,19 @@
+1) Is the act of creating a program by writing system code and then having a computer run it.
+
+2) A programming language is code that is made to give instructions to a computer.
+Languages used for web development are PHP, Pearl, Python, Java, etc...)
+
+3) An interpreted language does not have instructions given to the computer, it is sent to a middle man. A copiled language is compiled and sent as system instructions.
+
+4) (Same as #2?)
+	- JavaScript (Client)
+	- PHP (Server)
+	- Python (Server)
+	
+5) Code that gets run on a client machine such as the browser. (JavaScript)
+
+6) Code that gets run on the web server. (PHP/Python)
+
+7) Used to create dynamic applications (client side programming)
+
+8) Cascading Style Sheet, it is used to change the look of web page elements.

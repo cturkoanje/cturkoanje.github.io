@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bowling Average</title>
+	<style>
+		html { background: #fbfee4; }
+		header {
+			font: 2.25em arial, sans-serif;
+			color: #8f1213;
+			text-align: center;
+			padding:10px;
+		}
+		main {
+			width: 650px;
+			border: 10px double #f3f535;
+			background: #000;
+			border-radius: 15px;
+			margin: 0 auto;
+		}
+		#content {
+			margin: 20px 20px 20px 20px;
+			border: 10px double #fff;
+			background: #8f120a;
+			border-radius: 15px;
+			text-align: center;
+			color: #f2f4df;
+			font: 1.25em arial, sans-serif;
+		}
+		.list_type, #calclulate_button {
+			margin-top:20px;
+		}
+		#bowl2 { margin-top:40px !important; }
+		.input { border: 5px solid #f6e23c; }
+		#summary { padding:15px; }
+		span, input { text-transform: capitalize; }
+	</style>
+</head>
+<body>
+	<header>Bowling Average Calculator</header>
+	<main>
+		<form action="#" id="content">
+			<div id="bowl1">
+				<div class="list_type">Bowler 1 Info</div>
+				<div class="list_type">
+					Enter Bowler 1 Name: 
+					<input type="text" id="bowler1_name" class="input">
+				</div>
+				<div class="list_type">
+					Enter Bowler 1 Score 1: 
+					<input type="text" id="bowler1_score1" class="input">
+				</div>
+				<div class="list_type">
+					Enter Bowler 1 Score 2: 
+					<input type="text" id="bowler1_score2" class="input">
+				</div>
+				<div class="list_type">
+					Enter Bowler 1 Score 3: 
+					<input type="text" id="bowler1_score3" class="input">
+				</div>
+			</div>
+			<div id="bowl2">
+				<div class="list_type">Bowler 2 Info</div>
+				<div class="list_type">
+					Enter Bowler 2 Name: 
+					<input type="text" id="bowler2_name" class="input">
+				</div>
+				<div class="list_type">
+					Enter Bowler 2 Score 1: 
+					<input type="text" id="bowler2_score1" class="input">
+				</div>
+				<div class="list_type">
+					Enter Bowler 2 Score 2: 
+					<input type="text" id="bowler2_score2" class="input">
+				</div>
+				<div class="list_type">
+					Enter Bowler 2 Score 3: 
+					<input type="text" id="bowler2_score3" class="input">
+				</div>
+			</div>
+			<div id="calclulate_button"><input type="submit" value="Calculate Averages"></div>
+			<div id="summary"></div>
+		</form>
+	</main>
+</body>
+	<!--
+		I have a tendency to place JavaScript at the bottom
+		of the page. This way the body loads and displays to the user
+		then the bowser will make a request to get the JS library.
+		
+		http://goo.gl/webperf 
+		#perfmatters
+	-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#content").submit(function(e) {
+				e.preventDefault();
+				var bowl1Avg = (parseInt($("#bowler1_score1").val()) + parseInt($("#bowler1_score2").val()) + parseInt($("#bowler1_score3").val()))/3;
+				var bowl2Avg = (parseInt($("#bowler2_score1").val()) + parseInt($("#bowler2_score2").val()) + parseInt($("#bowler2_score3").val()))/3;
+				$("#summary").html("");
+				$("#summary").append('<div><span>' + $("#bowler1_name").val() + '</span> has an average of ' + bowl1Avg.toFixed(2) + '</div>');
+				$("#summary").append('<div><span>' + $("#bowler2_name").val() + '</span> has an average of ' + bowl2Avg.toFixed(2) + '</div>');
+				
+				if(bowl1Avg === bowl2Avg)
+					$("#summary").append('<div>Both players have the same average!</div>');
+				else if(bowl1Avg > bowl2Avg)
+					$("#summary").append('<div><span>' + $("#bowler1_name").val() + '</span> has the higher bowling average.</div>');
+				else
+					$("#summary").append('<div><span>' + $("#bowler2_name").val() + '</span> has the higher bowling average.</div>');
+			});
+		});
+	</script>
+</html>
