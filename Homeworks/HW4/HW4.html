@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Bowling Average</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<style>
 		html { background: #fbfee4; }
 		header {
@@ -34,6 +35,25 @@
 		#summary { padding:15px; }
 		span, input { text-transform: capitalize; }
 	</style>
+	<script>
+		$(document).ready(function(){
+			$("#content").submit(function(e) {
+				e.preventDefault();
+				var bowl1Avg = (parseInt($("#bowler1_score1").val()) + parseInt($("#bowler1_score2").val()) + parseInt($("#bowler1_score3").val()))/3;
+				var bowl2Avg = (parseInt($("#bowler2_score1").val()) + parseInt($("#bowler2_score2").val()) + parseInt($("#bowler2_score3").val()))/3;
+				$("#summary").html("");
+				$("#summary").append('<div><span>' + $("#bowler1_name").val() + '</span> has an average of ' + bowl1Avg.toFixed(2) + '</div>');
+				$("#summary").append('<div><span>' + $("#bowler2_name").val() + '</span> has an average of ' + bowl2Avg.toFixed(2) + '</div>');
+				
+				if(bowl1Avg === bowl2Avg)
+					$("#summary").append('<div>Both players have the same average!</div>');
+				else if(bowl1Avg > bowl2Avg)
+					$("#summary").append('<div><span>' + $("#bowler1_name").val() + '</span> has the higher bowling average.</div>');
+				else
+					$("#summary").append('<div><span>' + $("#bowler2_name").val() + '</span> has the higher bowling average.</div>');
+			});
+		});
+	</script>
 </head>
 <body>
 	<header>Bowling Average Calculator</header>
@@ -82,32 +102,4 @@
 		</form>
 	</main>
 </body>
-	<!--
-		I have a tendency to place JavaScript at the bottom
-		of the page. This way the body loads and displays to the user
-		then the bowser will make a request to get the JS library.
-		
-		http://goo.gl/webperf 
-		#perfmatters
-	-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script>
-		$(document).ready(function(){
-			$("#content").submit(function(e) {
-				e.preventDefault();
-				var bowl1Avg = (parseInt($("#bowler1_score1").val()) + parseInt($("#bowler1_score2").val()) + parseInt($("#bowler1_score3").val()))/3;
-				var bowl2Avg = (parseInt($("#bowler2_score1").val()) + parseInt($("#bowler2_score2").val()) + parseInt($("#bowler2_score3").val()))/3;
-				$("#summary").html("");
-				$("#summary").append('<div><span>' + $("#bowler1_name").val() + '</span> has an average of ' + bowl1Avg.toFixed(2) + '</div>');
-				$("#summary").append('<div><span>' + $("#bowler2_name").val() + '</span> has an average of ' + bowl2Avg.toFixed(2) + '</div>');
-				
-				if(bowl1Avg === bowl2Avg)
-					$("#summary").append('<div>Both players have the same average!</div>');
-				else if(bowl1Avg > bowl2Avg)
-					$("#summary").append('<div><span>' + $("#bowler1_name").val() + '</span> has the higher bowling average.</div>');
-				else
-					$("#summary").append('<div><span>' + $("#bowler2_name").val() + '</span> has the higher bowling average.</div>');
-			});
-		});
-	</script>
 </html>
