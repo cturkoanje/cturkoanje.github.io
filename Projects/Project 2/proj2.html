@@ -51,6 +51,7 @@
 			$("#calculator").submit(function(e){
 				e.preventDefault();
 				calculate();
+				$("footer").slideDown();
 			});
 			
 			$("#in_name, #in_cost, #in_quantity, #in_tax_rate").keyup(function() {
@@ -77,8 +78,7 @@
 			$("#out_subtotal").html(subtotal.toFixed(2));
 			$("#out_tax").html(taxAmount.toFixed(2));
 			$("#out_total").html(total.toFixed(2));
-			
-			$("footer").slideDown();
+		
 		}
 	</script>
 </head>
