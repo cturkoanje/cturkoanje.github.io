@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<style>
+			html {
+				background: rgb(243,239,227);
+				color:rgb(48,147,163);
+			}
+			main {
+				width: 600px;
+				height:350px;
+				border-radius: 20px;
+				border: 8px solid rgb(168,69,65);
+				padding:10px;
+				margin: 25px auto;
+				background: rgb(255,255,255);
+			}
+			header {
+				font-family: Arial;
+				font-size: 2em;
+				padding:10px;
+				text-align: center;
+				border-bottom: 7px double rgb(48,147,163);
+			}
+			#leftcontainer {
+				background: url("http://newton.ncc.edu/gansonj/ite154/img/thumb.jpg");
+				width: 229px;
+				height: 220px;
+				margin-top: 15px;
+			}
+			#rightcontainer {
+				margin-left: 300px;
+				margin-top: -220px;
+				text-align: center;
+				width:250px;
+			}
+			label[for=grade_input] {
+				font-family: Arial;
+				font-size: 1.5em;
+			}
+			input[type=number] {
+				width: 200px;
+				margin-top: 5px;
+			}
+			input[type=submit] {
+				margin-top: 10px;
+			}
+			#letter_grade {
+				font-family: Arial;
+				font-size: 8.0em;
+				margin-top: 10px;
+			}
+		</style>
+		<script>
+			var grade_colors = {
+				"A" : "#00A300",
+				"B" : "#0066FF",
+				"C" : "#D1873E",
+				"D" : "#000000",
+				"F" : "#FF0000"
+			};
+
+			function calculateGrade(grade) {
+				var finalGrade = "A";
+
+				if(grade >= 90)
+					finalGrade = "A";
+				else if(grade < 90 && grade >=80)
+					finalGrade = "B";
+				else if(grade < 80 && grade >=70)
+					finalGrade = "C";
+				else if(grade < 70 && grade >=60)
+					finalGrade = "D";
+				else
+					finalGrade = "F";
+
+				$("#letter_grade").html(finalGrade);
+				$("#letter_grade").css("color", grade_colors[finalGrade]);
+			}
+
+			$(document).ready(function(){
+				$("form").submit(function(e){
+					e.preventDefault();
+					calculateGrade($("#grade_input").val());
+				});
+				$("#grade_input").keyup(function(){
+					$("form").submit();
+				})
+			});
+		</script>
+	</head>
+	<body>
+		<main>
+			<header>Letter Grade Converter</header>
+			<div id="leftcontainer"></div>
+			<div id="rightcontainer">
+				<form>
+					<div><label for="grade_input">Enter Grade</label></div>
+					<div><input type="number" min="0" max="100" id="grade_input" placeholder="93"></div>
+					<div><input type="submit" value="Convert Grade"></div>
+					<div id="letter_grade">A</div>
+				</form>
+			</div>
+		</main>
+	</body>
+</html>
