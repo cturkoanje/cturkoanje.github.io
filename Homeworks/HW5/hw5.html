@@ -2,6 +2,46 @@
 <html>
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script>
+			var grade_colors = {
+				"A" : "#00A300",
+				"B" : "#0066FF",
+				"C" : "#D1873E",
+				"D" : "#000000",
+				"F" : "#FF0000"
+			};
+
+			function calculateGrade(grade) {
+				var finalGrade = "A";
+
+				if(grade >= 90)
+					finalGrade = "A";
+				else if(grade < 90 && grade >=80)
+					finalGrade = "B";
+				else if(grade < 80 && grade >=70)
+					finalGrade = "C";
+				else if(grade < 70 && grade >=60)
+					finalGrade = "D";
+				else
+					finalGrade = "F";
+
+				$("#letter_grade").html(finalGrade);
+				$("#letter_grade").css("color", grade_colors[finalGrade]);
+			}
+
+			$(document).ready(function(){
+				$("form").submit(function(e){
+					e.preventDefault();
+					calculateGrade($("#grade_input").val());
+				});
+				$("#grade_input").keyup(function(){
+					$("form").submit();
+				});
+				$("#grade_input").change(function(){
+					$("form").submit();
+				});
+			});
+		</script>
 		<style>
 			html {
 				background: rgb(243,239,227);
@@ -52,46 +92,6 @@
 				margin-top: 10px;
 			}
 		</style>
-		<script>
-			var grade_colors = {
-				"A" : "#00A300",
-				"B" : "#0066FF",
-				"C" : "#D1873E",
-				"D" : "#000000",
-				"F" : "#FF0000"
-			};
-
-			function calculateGrade(grade) {
-				var finalGrade = "A";
-
-				if(grade >= 90)
-					finalGrade = "A";
-				else if(grade < 90 && grade >=80)
-					finalGrade = "B";
-				else if(grade < 80 && grade >=70)
-					finalGrade = "C";
-				else if(grade < 70 && grade >=60)
-					finalGrade = "D";
-				else
-					finalGrade = "F";
-
-				$("#letter_grade").html(finalGrade);
-				$("#letter_grade").css("color", grade_colors[finalGrade]);
-			}
-
-			$(document).ready(function(){
-				$("form").submit(function(e){
-					e.preventDefault();
-					calculateGrade($("#grade_input").val());
-				});
-				$("#grade_input").keyup(function(){
-					$("form").submit();
-				});
-				$("#grade_input").change(function(){
-					$("form").submit();
-				});
-			});
-		</script>
 	</head>
 	<body>
 		<main>
